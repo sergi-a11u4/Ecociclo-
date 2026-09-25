@@ -5,122 +5,133 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>EcoCiclo Digital</title>
 <style>
-body{margin:0;background:#e2e8f0;font-family:'Segoe UI',Arial;padding:0}
-.app{max-width:750px;margin:20px auto;background:#ffffff;border-radius:24px;overflow:hidden;border:2px solid #1e3a2e;box-shadow:0 20px 50px rgba(0,0,0,0.2);position:relative;min-height:850px}
-.header{background:#1e3a2e;color:#f7f5f0;padding:24px;text-align:center;font-size:28px;font-weight:800;letter-spacing:1px;border-bottom:4px solid #c9a86a}
-.tabs{display:flex;gap:8px;padding:14px;background:#f1f5f9;border-bottom:2px solid #cbd5e1}
-.tab{flex:1;padding:14px 4px;background:#ffffff;border:2px solid #1e3a2e;border-radius:12px;font-weight:800;font-size:13px;color:#1e3a2e;cursor:pointer}
-.tab.active{background:#1e3a2e;color:#ffffff}
-.content{display:none;padding:24px}
+*{box-sizing:border-box}
+body{margin:0;background:#e2e8f0;font-family:'Segoe UI',Arial;padding:12px}
+.app{max-width:780px;margin:auto;background:#fff;border-radius:24px;overflow:hidden;border:2px solid #1e3a2e;box-shadow:0 20px 50px rgba(0,0,0,0.2);position:relative;min-height:92vh;display:flex;flex-direction:column}
+.header{background:#1e3a2e;color:#fff;padding:20px;text-align:center;font-size:26px;font-weight:800;border-bottom:4px solid #c9a86a}
+.tabs{display:flex;gap:8px;padding:12px;background:#f1f5f9;border-bottom:2px solid #cbd5e1}
+.tab{flex:1;padding:12px 2px;background:#fff;border:2px solid #1e3a2e;border-radius:10px;font-weight:800;font-size:12px;color:#1e3a2e}
+.tab.active{background:#1e3a2e;color:#fff}
+.content{display:none;padding:20px;flex:1;overflow-y:auto}
 .content.active{display:block!important}
-.btn{width:100%;padding:18px;border-radius:12px;border:0;background:#1e3a2e;color:#fff;font-weight:800;margin-top:14px;cursor:pointer;font-size:15px;letter-spacing:0.5px}
-.btn:hover{background:#2a4d3e}
-#preview{width:100%;border-radius:16px;margin-top:16px;display:none;max-height:350px;object-fit:cover;border:3px solid #e2e8f0}
-.circle{width:140px;height:140px;border-radius:50%;border:10px solid #1e3a2e;display:flex;align-items:center;justify-content:center;margin:16px auto;font-size:28px;font-weight:800;color:#1e3a2e;background:#f8fafc}
-.opcion{background:#f8fafc;padding:14px;border-radius:12px;margin-top:10px;border-left:6px solid #1e3a2e;font-size:14px;color:#334155}
-.pregunta{background:#f8fafc;padding:18px;border-radius:14px;border:2px solid #cbd5e1;margin-top:16px}
-.pregunta label{font-size:15px;font-weight:800;color:#1e293b}
-select,input,textarea{width:100%;padding:16px;border-radius:12px;border:2px solid #94a3b8;font-weight:600;margin-top:8px;box-sizing:border-box;font-size:15px;background:#fff}
-select:focus,input:focus,textarea:focus{border-color:#1e3a2e;outline:none}
+.btn{width:100%;padding:16px;border-radius:12px;border:0;background:#1e3a2e;color:#fff;font-weight:800;margin-top:12px;cursor:pointer;font-size:15px}
+#preview{width:100%;border-radius:14px;margin-top:12px;display:none;max-height:300px;object-fit:cover;border:2px solid #cbd5e1}
+.circle{width:130px;height:130px;border-radius:50%;border:8px solid #1e3a2e;display:flex;align-items:center;justify-content:center;margin:10px auto;font-size:26px;font-weight:800}
+.opcion{background:#f8fafc;padding:12px;border-radius:10px;margin-top:8px;border-left:5px solid #1e3a2e;font-size:13px}
+.pregunta{background:#f8fafc;padding:14px;border-radius:12px;border:2px solid #cbd5e1;margin-top:12px}
+select,input,textarea{width:100%;padding:14px;border-radius:10px;border:2px solid #94a3b8;margin-top:6px;font-size:14px}
 
-/* PORTADA FORMAL GRANDE */
-#portada{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(180deg,#1e3a2e 0%,#2d4a3e 45%,#f1f5f9 100%);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 30px;box-sizing:border-box;text-align:center;color:#fff;transition:0.7s cubic-bezier(0.4,0,0.2,1)}
-#portada.oculta{transform:translateY(-100%);opacity:0;pointer-events:none}
-.portada-icon{font-size:80px;background:#ffffff;width:150px;height:150px;border-radius:30px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 15px 30px rgba(0,0,0,0.3);border:4px solid #c9a86a}
-.portada-titulo{font-size:48px;font-weight:900;margin:10px 0 10px;letter-spacing:2px;line-height:1.1;color:#ffffff;text-shadow:0 2px 10px rgba(0,0,0,0.3)}
-.portada-linea{width:80px;height:4px;background:#c9a86a;margin:16px auto;border-radius:2px}
-.portada-sub{font-size:16px;background:rgba(255,255,255,0.15);padding:12px 20px;border-radius:30px;margin-top:10px;border:1px solid rgba(255,255,255,0.2);letter-spacing:1px;color:#f1f5f9}
-.portada-info{background:#ffffff;color:#1e293b;padding:24px;border-radius:20px;margin:30px 0;width:100%;box-sizing:border-box;text-align:left;font-size:14px;line-height:1.7;border:2px solid #cbd5e1;box-shadow:0 10px 30px rgba(0,0,0,0.15)}
-.portada-info b{color:#1e3a2e}
-.btn-portada{background:#1e3a2e;color:#ffffff;font-size:18px;padding:20px 30px;border:3px solid #c9a86a;box-shadow:0 8px 0 #0f231c;letter-spacing:1px;border-radius:14px}
-.btn-portada:hover{background:#2a4d3e;transform:translateY(-2px);box-shadow:0 10px 0 #0f231c}
-.btn-portada:active{box-shadow:0 3px 0 #0f231c;transform:translateY(5px)}
-.badge-formal{display:inline-block;background:#f1f5f9;border:2px solid #c9a86a;color:#1e3a2e;padding:6px 14px;border-radius:20px;font-size:11px;font-weight:800;margin:4px}
+/* PORTADA ARREGLADA */
+#portada{position:absolute;inset:0;background:#1e3a2e;z-index:999;display:flex;flex-direction:column;overflow:hidden;border-radius:22px}
+#portada.oculta{transform:translateY(-110%);opacity:0;pointer-events:none;transition:0.6s}
+.portada-top{background:linear-gradient(180deg,#1e3a2e 0%,#2d5a45 100%);padding:28px 20px 20px;text-align:center;color:#fff;flex-shrink:0}
+.portada-title{font-size:42px;font-weight:900;line-height:1.1;margin:0}
+.portada-subtitle{margin:14px auto 0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);padding:10px 18px;border-radius:30px;font-size:12px;letter-spacing:1px;max-width:320px}
+.portada-body{flex:1;background:#f1f5f9;padding:18px;overflow-y:auto}
+.portada-card{background:#fff;border-radius:18px;padding:18px;border:2px solid #cbd5e1;box-shadow:0 8px 20px rgba(0,0,0,0.1)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.badge{border:2px solid #c9a86a;background:#fffbeb;padding:6px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#1e3a2e}
+.portada-text{font-size:13px;color:#334155;line-height:1.6;text-align:left}
+.portada-text b{color:#1e3a2e}
+.portada-ejemplo{background:#f8fafc;border-left:5px solid #c9a86a;padding:12px;border-radius:10px;margin-top:12px;font-size:12px}
+.portada-footer{background:#fff;padding:16px 18px;border-top:2px solid #e2e8f0;flex-shrink:0;text-align:center}
+.btn-portada{background:#1e3a2e;color:#fff;border:3px solid #c9a86a;box-shadow:0 6px 0 #0f231c;font-size:16px;padding:18px}
+.btn-portada:active{box-shadow:0 2px 0 #0f231c;transform:translateY(4px)}
 </style>
 </head>
 <body>
 <div class="app">
 
-<!-- PORTADA FORMAL GRANDE -->
 <div id="portada">
-<div class="portada-icon">🌿</div>
-<div class="portada-titulo">EcoCiclo<br>Digital</div>
-<div class="portada-linea"></div>
-<div class="portada-sub">SISTEMA DE ANÁLISIS Y REUTILIZACIÓN SOSTENIBLE</div>
-
-<div class="portada-info">
-<div style="text-align:center;margin-bottom:12px">
-<span class="badge-formal">♻️ ECONOMÍA CIRCULAR</span>
-<span class="badge-formal">📊 ANÁLISIS TÉCNICO</span>
-<span class="badge-formal">🌎 SOSTENIBLE</span>
-</div>
-<b style="font-size:16px">Proyecto de Innovación Ambiental</b><br><br>
-Plataforma digital que analiza objetos mediante fotografía, evaluando material, forma y nivel de uso para determinar su potencial de reutilización, valor comercial y opciones de donación.<br><br>
-<b>Metodología:</b><br>
-• Análisis fotográfico del objeto<br>
-• Evaluación de 5 criterios técnicos<br>
-• Cálculo de impacto ambiental<br>
-• Plan de comercialización y donación<br><br>
-<div style="background:#f1f5f9;padding:10px;border-radius:10px;text-align:center;border-left:4px solid #c9a86a">
-<span style="font-weight:800;color:#1e3a2e">Institución: Nuevo León • 2026</span><br>
-<span style="font-size:11px">Desarrollo Sostenible y Economía Circular</span>
-</div>
+<div class="portada-top">
+<div style="background:#fff;width:90px;height:90px;border-radius:20px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:50px;border:3px solid #c9a86a">🌿</div>
+<h1 class="portada-title">EcoCiclo<br>Digital</h1>
+<div class="portada-subtitle">♻️ Dale una segunda vida a lo que ya no usas</div>
 </div>
 
-<button class="btn btn-portada" onclick="entrar()">INGRESAR AL SISTEMA DE ANÁLISIS →</button>
-<p style="font-size:11px;margin-top:18px;opacity:0.7;letter-spacing:1px">VERSIÓN 2.0 • DISEÑO FORMAL</p>
+<div class="portada-body">
+<div class="portada-card">
+<div class="badges">
+<span class="badge">♻️ REUTILIZAR</span>
+<span class="badge">💰 VENDER</span>
+<span class="badge">❤️ DONAR</span>
 </div>
 
-<div class="header">🌿 EcoCiclo Digital — Sistema Formal</div>
+<div class="portada-text">
+<b style="font-size:15px">¿De qué trata?</b><br><br>
+Muchas veces tiramos cosas que todavía sirven. Esta app te ayuda a no contaminar y a darle otra oportunidad a tus objetos.<br><br>
+<b>¿Qué hace?</b><br>
+<b>1. 📸 Foto:</b> Tomas foto a lo que ya no quieres (ropa, mueble, botella, etc.)<br>
+<b>2. ❓ 5 preguntas:</b> Por qué lo desechas, qué harías, cómo lo reutilizarías, cuánto lo venderías y dónde.<br>
+<b>3. 📊 Análisis:</b> La app ve material, forma y nivel de uso.<br>
+<b>4. 🛠️ Te recomienda:</b> Cómo repararlo, transformarlo, precio real y dónde donarlo en NL.<br>
+<b>5. 🌎 Evitas basura</b> y puedes ganar dinero.<br>
+
+<div class="portada-ejemplo">
+<b>Ejemplo real:</b> Subes foto de un objeto usado. Si es de plástico duro y forma hueca, te dice "haz maceta". Si es de tela, "haz bolsa". Te da precio sugerido y tutorial.
+</div>
+
+<div style="text-align:center;margin-top:12px;background:#dcfce7;padding:8px;border-radius:10px;font-weight:800;font-size:11px;color:#1e3a2e">
+Proyecto Escolar • Nuevo León 2026 • Cuidado del Ambiente
+</div>
+</div>
+</div>
+</div>
+
+<div class="portada-footer">
+<button class="btn btn-portada" onclick="document.getElementById('portada').classList.add('oculta')">📸 ENTRAR AL ESCANER →</button>
+<div style="font-size:10px;color:#64748b;margin-top:8px">Versión corregida • Ya no se corta</div>
+</div>
+</div>
+
+<div class="header">🌿 EcoCiclo Digital</div>
 <div class="tabs">
 <button class="tab active" onclick="tab(0)">📸 ANALIZAR</button>
 <button class="tab" onclick="tab(1)">📊 RESULTADO</button>
-<button class="tab" onclick="tab(2)">🛠️ MODIFICAR</button>
+<button class="tab" onclick="tab(2)">🛠️ IDEAS</button>
 <button class="tab" onclick="tab(3)">📍 DONAR</button>
 </div>
 
 <div id="c0" class="content active">
-<h3 style="font-size:22px;color:#1e3a2e">📸 Análisis del Objeto</h3>
-<select id="tipo"><option>Ropa</option><option selected>Otros</option><option>Mueble</option><option>Electrónico</option><option>Recipiente plástico</option><option>Libro</option><option>Útil escolar</option></select><br><br>
-<button class="btn" style="background:#f1f5f9;color:#1e3a2e;border:2px solid #1e3a2e" onclick="gal.click()">📁 SUBIR DESDE GALERÍA</button>
-<button class="btn" style="background:#ffffff;color:#1e3a2e;border:2px solid #c9a86a" onclick="cam.click()">📷 CAPTURAR FOTOGRAFÍA</button>
+<h3 style="color:#1e3a2e;margin-top:0">📸 Analizar objeto</h3>
+<select id="tipo"><option>Ropa</option><option selected>Otros</option><option>Mueble</option><option>Electrónico</option><option>Recipiente plástico</option><option>Libro</option><option>Útil escolar</option></select>
+<div style="display:flex;gap:8px;margin-top:10px">
+<button class="btn" style="flex:1;background:#f1f5f9;color:#1e3a2e;border:2px solid #1e3a2e" onclick="gal.click()">📁 GALERÍA</button>
+<button class="btn" style="flex:1;background:#fffbeb;color:#1e3a2e;border:2px solid #c9a86a" onclick="cam.click()">📷 FOTO</button>
+</div>
 <input type="file" id="gal" accept="image/*" hidden onchange="foto(event)">
 <input type="file" id="cam" accept="image/*" capture="environment" hidden onchange="foto(event)">
-<img id="preview"><p id="msg" style="font-size:14px;font-weight:bold;color:#1e3a2e"></p>
+<img id="preview"><p id="msg" style="font-size:13px;font-weight:800;color:#1e3a2e"></p>
 
 <div id="p12" style="display:none">
-<div class="pregunta"><label>1️⃣ ¿Motivo de desecho?</label><select id="porque"><option value="">Selecciona una opción...</option><option>Ya no me sirve</option><option>Está roto</option><option>Pasó de moda</option><option>Tengo duplicado</option><option>Ocupa espacio</option><option>Otros</option></select></div>
-<div class="pregunta"><label>2️⃣ ¿Objetivo deseado?</label><select id="quegustaria"><option value="">Selecciona una opción...</option><option>Repararlo</option><option>Transformarlo</option><option>Donarlo</option><option>Venderlo</option><option>Reciclarlo</option></select></div>
-<button class="btn" style="background:#c9a86a;color:#1e3a2e" onclick="ir3()">CONTINUAR →</button>
+<div class="pregunta"><label>1️⃣ ¿Por qué lo desechas?</label><select id="porque"><option value="">Selecciona...</option><option>Ya no me sirve</option><option>Está roto</option><option>Pasó de moda</option><option>Tengo duplicado</option><option>Ocupa espacio</option></select></div>
+<div class="pregunta"><label>2️⃣ ¿Qué te gustaría hacer?</label><select id="quegustaria"><option value="">Selecciona...</option><option>Repararlo</option><option>Transformarlo</option><option>Donarlo</option><option>Venderlo</option><option>Reciclarlo</option></select></div>
+<button class="btn" style="background:#c9a86a;color:#1e3a2e" onclick="ir3()">SIGUIENTE →</button>
 </div>
-
 <div id="p3" style="display:none">
-<div class="pregunta" style="background:#fffbeb;border-color:#c9a86a"><label>3️⃣ ¿Propuesta de reutilización?</label><textarea id="reutilizar" rows="4" placeholder="Describa cómo reutilizaría el objeto..."></textarea></div>
-<button class="btn" style="background:#c9a86a;color:#1e3a2e" onclick="ir45()">CONTINUAR A VALORACIÓN →</button>
+<div class="pregunta"><label>3️⃣ ¿Cómo lo reutilizarías?</label><textarea id="reutilizar" rows="3" placeholder="Ej: maceta, bolsa..."></textarea></div>
+<button class="btn" style="background:#c9a86a;color:#1e3a2e" onclick="ir45()">SIGUIENTE →</button>
 </div>
-
 <div id="p45" style="display:none">
-<div class="pregunta"><label>4️⃣ Valor comercial estimado</label><select id="precio"><option value="">Selecciona...</option><option>$20 - $50</option><option>$50 - $100</option><option>$100 - $300</option><option>$300 - $500</option><option>$500+</option><option>No lo vendería</option></select><input type="number" id="precioNum" placeholder="Precio exacto $"></div>
-<div class="pregunta"><label>5️⃣ Canal de comercialización</label><select id="comoVender"><option value="">Selecciona...</option><option>Facebook Marketplace</option><option>Mercado Libre</option><option>Bazar / Tianguis</option><option>WhatsApp grupos</option><option>Trueque</option></select><textarea id="dondeVender" rows="2" placeholder="Especifique lugar..."></textarea></div>
-<select id="estado" style="margin-top:12px"><option value="3" selected>Estado 3 - Uso moderado</option><option value="5">5 - Como nuevo</option><option value="1">1 - Muy deteriorado</option></select>
-<button class="btn" onclick="calcular()">GENERAR INFORME FINAL →</button>
+<div class="pregunta"><label>4️⃣ ¿Precio?</label><select id="precio"><option value="">Selecciona...</option><option>$20 - $50</option><option>$50 - $100</option><option>$100 - $300</option><option>$300+</option><option>No vender</option></select><input type="number" id="precioNum" placeholder="Exacto $"></div>
+<div class="pregunta"><label>5️⃣ ¿Cómo vender?</label><select id="comoVender"><option value="">Selecciona...</option><option>Marketplace</option><option>Mercado Libre</option><option>Bazar</option><option>WhatsApp</option></select><textarea id="dondeVender" rows="2" placeholder="Lugar..."></textarea></div>
+<select id="estado"><option value="3" selected>Estado 3 - Usado</option><option value="5">5 - Nuevo</option><option value="1">1 - Dañado</option></select>
+<button class="btn" onclick="calcular()">VER RESULTADO →</button>
 </div>
 </div>
 
-<div id="c1" class="content"><div style="text-align:center;background:#f8fafc;padding:20px;border-radius:16px;border:2px solid #cbd5e1"><div class="circle" id="indice">--%</div><h3 id="recom" style="color:#1e3a2e;font-size:20px">Esperando análisis</h3><p id="kg" style="font-size:14px"></p><div id="resumenResp" style="background:#fff;padding:16px;border-radius:12px;font-size:13px;text-align:left;margin-top:12px;border:2px solid #e2e8f0"></div></div><button class="btn" onclick="tab(2)">VER RECOMENDACIONES TÉCNICAS →</button></div>
-<div id="c2" class="content"><h3 style="color:#1e3a2e">🛠️ Informe de Modificación</h3><div id="infoMod"></div><div id="infoVenta" style="background:#f1f5f9;padding:16px;border-radius:12px;border:2px solid #94a3b8;margin-top:14px;font-size:13px"></div><div id="links" style="background:#fffbeb;padding:12px;border-radius:12px;margin-top:12px;font-size:13px;border:2px solid #c9a86a"></div></div>
-<div id="c3" class="content"><h3 style="color:#1e3a2e">📍 Centros de Donación Autorizados</h3><div style="background:#f8fafc;padding:16px;border-radius:12px;border:2px solid #cbd5e1;font-size:14px;line-height:1.8"><b>• Cáritas Monterrey</b> - Ropa y muebles<br><b>• SIMEPRODE</b> - Reciclaje técnico<br><b>• DIF Nuevo León</b> - Artículos diversos</div><iframe width="100%" height="250" style="border:0;border-radius:16px;margin-top:14px" src="https://www.google.com/maps?q=Monterrey+Nuevo+Leon&z=11&output=embed"></iframe></div>
-</div>
+<div id="c1" class="content"><div style="text-align:center;background:#f8fafc;padding:16px;border-radius:16px;border:2px solid #cbd5e1"><div class="circle" id="indice">--%</div><h3 id="recom">Esperando</h3><p id="kg"></p><div id="resumenResp" style="background:#fff;padding:12px;border-radius:10px;font-size:12px;text-align:left;border:2px solid #e2e8f0"></div></div><button class="btn" onclick="tab(2)">VER IDEAS →</button></div>
+<div id="c2" class="content"><h3>🛠️ Ideas</h3><div id="infoMod"></div><div id="infoVenta" style="background:#f1f5f9;padding:12px;border-radius:12px;border:2px solid #cbd5e1;margin-top:10px;font-size:12px"></div></div>
+<div id="c3" class="content"><h3>📍 Donar</h3><div style="background:#f8fafc;padding:14px;border-radius:12px;border:2px solid #cbd5e1;font-size:13px">• Cáritas Monterrey<br>• SIMEPRODE<br>• DIF Nuevo León</div><iframe width="100%" height="220" style="border:0;border-radius:12px;margin-top:10px" src="https://www.google.com/maps?q=Monterrey+Nuevo+Leon&z=11&output=embed"></iframe></div>
 
+</div>
 <script>
-function entrar(){document.getElementById('portada').classList.add('oculta')}
-function tab(n){for(let i=0;i<4;i++){document.getElementById('c'+i).style.display='none'}document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('c'+n).style.display='block';document.querySelectorAll('.tab')[n].classList.add('active')}
+function tab(n){for(let i=0;i<4;i++){document.getElementById('c'+i).classList.remove('active')}document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('c'+n).classList.add('active');document.querySelectorAll('.tab')[n].classList.add('active')}
 let est=3,fotoOk=false;
-function foto(e){let f=e.target.files[0];if(!f)return;preview.src=URL.createObjectURL(f);preview.style.display='block';fotoOk=true;msg.innerText='✅ Fotografía cargada: '+f.name+' | Análisis habilitado';document.getElementById('p12').style.display='block';document.getElementById('p3').style.display='none';document.getElementById('p45').style.display='none';est=Math.floor(Math.random()*2)+3;estado.value=est}
-function ir3(){if(!porque.value||!quegustaria.value){alert('Complete las preguntas 1 y 2');return}document.getElementById('p3').style.display='block';window.scrollTo(0,document.body.scrollHeight)}
-function ir45(){if(!reutilizar.value){alert('Describa la propuesta de reutilización');return}document.getElementById('p45').style.display='block';window.scrollTo(0,document.body.scrollHeight)}
-let dataMod={"Ropa":"<div class=opcion><b>1. Reparación textil</b> - Costura y refuerzo</div><div class=opcion><b>2. Transformación</b> - Conversión en bolso ecológico</div><div class=opcion><b>3. Teñido profesional</b></div><div class=opcion><b>4. Donación certificada</b></div>","Otros":"<div class=opcion><b>1. Clasificación por material</b></div><div class=opcion><b>2. Reutilización</b> - Organizador</div><div class=opcion><b>3. Donación</b></div><div class=opcion><b>4. Compostaje</b></div>","Mueble":"<div class=opcion><b>1. Restauración</b></div><div class=opcion><b>2. Tapizado</b></div><div class=opcion><b>3. Reconversión</b></div><div class=opcion><b>4. Donación</b></div>","Electrónico":"<div class=opcion><b>1. Limpieza técnica</b></div><div class=opcion><b>2. Formateo</b></div><div class=opcion><b>3. Recuperación de componentes</b></div><div class=opcion><b>4. Reciclaje especializado</b></div>","Recipiente plástico":"<div class=opcion><b>1. Conversión en maceta</b></div><div class=opcion><b>2. Organizador</b></div><div class=opcion><b>3. Sistema de riego</b></div><div class=opcion><b>4. Reciclaje</b></div>","Libro":"<div class=opcion><b>1. Restauración</b></div><div class=opcion><b>2. Libreta reciclada</b></div><div class=opcion><b>3. Donación biblioteca</b></div><div class=opcion><b>4. Digitalización</b></div>","Útil escolar":"<div class=opcion><b>1. Reparación</b></div><div class=opcion><b>2. Forrado</b></div><div class=opcion><b>3. Relleno</b></div><div class=opcion><b>4. Donación kit escolar</b></div>"};
-function calcular(){let pq=porque.value,qg=quegustaria.value,ru=reutilizar.value,pr=precio.value,prN=precioNum.value,cv=comoVender.value,dv=dondeVender.value;if(!fotoOk){alert('Cargue fotografía primero');return}if(!pr||!cv){alert('Complete valoración comercial');return}let ind=est*20;indice.innerText=ind+'%';recom.innerText=ind>=80?'✅ VIABILIDAD ALTA - Venta/Donación':'🔧 VIABILIDAD MEDIA - Requiere intervención';let tp=tipo.value;let pesos={Ropa:0.5,Otros:1.0,Mueble:12,Electrónico:2.5,'Recipiente plástico':0.2,Libro:0.4,'Útil escolar':0.3};let kgV=pesos[tp]||1;kg.innerText='Impacto ambiental evitado: '+kgV+' kg | Valor: '+(prN? '$'+prN : pr);resumenResp.innerHTML='<b style=color:#1e3a2e>INFORME TÉCNICO:</b><br><br>1️⃣ Motivo: '+pq+'<br>2️⃣ Objetivo: '+qg+'<br>3️⃣ Propuesta: '+ru+'<br>4️⃣ <b>Valor: '+(prN? '$'+prN+' ('+pr+')' : pr)+'</b><br>5️⃣ Canal: '+cv+'<br>📍 Ubicación: '+(dv||cv);infoMod.innerHTML=dataMod[tp]+'<div class=opcion style="background:#fffbeb;border-left-color:#c9a86a"><b>Propuesta del usuario:</b> '+ru+'</div>';infoVenta.innerHTML='<b>💼 PLAN DE COMERCIALIZACIÓN:</b><br>• Valor estimado: '+(prN? '$'+prN : pr)+'<br>• Canal: '+cv+'<br>• Punto: '+(dv||cv)+'<br>• Recomendación: Registro fotográfico con iluminación profesional, descripción estado '+estado.value+'/5, motivo: "'+pq+'".<br><br><a href="https://www.facebook.com/marketplace/create/item/" target="_blank">📦 Marketplace</a> | <a href="https://www.mercadolibre.com.mx/" target="_blank">Mercado Libre</a>';links.innerHTML='<a href="https://www.youtube.com/results?search_query=como+reutilizar+y+vender+'+tp+'" target="_blank">▶️ Tutorial técnico: '+tp+'</a>';tab(1)}
+function foto(e){let f=e.target.files[0];if(!f)return;preview.src=URL.createObjectURL(f);preview.style.display='block';fotoOk=true;msg.innerText='✅ Foto: '+f.name;document.getElementById('p12').style.display='block';document.getElementById('p3').style.display='none';document.getElementById('p45').style.display='none'}
+function ir3(){if(!porque.value||!quegustaria.value){alert('Responde 1 y 2');return}document.getElementById('p3').style.display='block'}
+function ir45(){if(!reutilizar.value){alert('Responde 3');return}document.getElementById('p45').style.display='block'}
+function calcular(){if(!fotoOk){alert('Foto primero');return}if(!precio.value||!comoVender.value){alert('Falta precio');return}indice.innerText=(est*20)+'%';recom.innerText='Listo para vender/donar';kg.innerText='Evitas 1kg basura';resumenResp.innerHTML='1️⃣ '+porque.value+'<br>2️⃣ '+quegustaria.value+'<br>3️⃣ '+reutilizar.value+'<br>4️⃣ '+precio.value+'<br>5️⃣ '+comoVender.value;infoMod.innerHTML='<div class=opcion><b>Idea:</b> '+reutilizar.value+'</div>';infoVenta.innerHTML='Vender en '+comoVender.value+' por '+precio.value;tab(1)}
 </script>
 </body>
 </html>
