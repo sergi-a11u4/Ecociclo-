@@ -10,33 +10,29 @@ body{margin:0;background:#e2e8f0;font-family:'Segoe UI',Arial;padding:12px}
 .app{max-width:780px;margin:auto;background:#fff;border-radius:24px;overflow:hidden;border:2px solid #1e3a2e;box-shadow:0 20px 50px rgba(0,0,0,0.2);position:relative;min-height:92vh;display:flex;flex-direction:column}
 .header{background:#1e3a2e;color:#fff;padding:20px;text-align:center;font-size:26px;font-weight:800;border-bottom:4px solid #c9a86a}
 .tabs{display:flex;gap:8px;padding:12px;background:#f1f5f9;border-bottom:2px solid #cbd5e1}
-.tab{flex:1;padding:12px 2px;background:#fff;border:2px solid #1e3a2e;border-radius:10px;font-weight:800;font-size:12px;color:#1e3a2e}
+.tab{flex:1;padding:12px 2px;background:#fff;border:2px solid #1e3a2e;border-radius:10px;font-weight:800;font-size:12px;color:#1e3a2e;cursor:pointer}
 .tab.active{background:#1e3a2e;color:#fff}
 .content{display:none;padding:20px;flex:1;overflow-y:auto}
 .content.active{display:block!important}
 .btn{width:100%;padding:16px;border-radius:12px;border:0;background:#1e3a2e;color:#fff;font-weight:800;margin-top:12px;cursor:pointer;font-size:15px}
+.btn2{background:#c9a86a;color:#1e3a2e}
 #preview{width:100%;border-radius:14px;margin-top:12px;display:none;max-height:300px;object-fit:cover;border:2px solid #cbd5e1}
 .circle{width:130px;height:130px;border-radius:50%;border:8px solid #1e3a2e;display:flex;align-items:center;justify-content:center;margin:10px auto;font-size:26px;font-weight:800}
-.opcion{background:#f8fafc;padding:12px;border-radius:10px;margin-top:8px;border-left:5px solid #1e3a2e;font-size:13px}
+.opcion{padding:12px;border-radius:10px;margin-top:8px;border:2px solid #cbd5e1;font-size:13px;cursor:pointer;background:#fff;transition:0.2s}
+.opcion:hover{border-color:#1e3a2e;background:#f1f5f9}
+.opcion.sel{background:#dcfce7;border-color:#1e3a2e;font-weight:800}
 .pregunta{background:#f8fafc;padding:14px;border-radius:12px;border:2px solid #cbd5e1;margin-top:12px}
 select,input,textarea{width:100%;padding:14px;border-radius:10px;border:2px solid #94a3b8;margin-top:6px;font-size:14px}
-
-/* PORTADA ARREGLADA */
 #portada{position:absolute;inset:0;background:#1e3a2e;z-index:999;display:flex;flex-direction:column;overflow:hidden;border-radius:22px}
 #portada.oculta{transform:translateY(-110%);opacity:0;pointer-events:none;transition:0.6s}
-.portada-top{background:linear-gradient(180deg,#1e3a2e 0%,#2d5a45 100%);padding:28px 20px 20px;text-align:center;color:#fff;flex-shrink:0}
-.portada-title{font-size:42px;font-weight:900;line-height:1.1;margin:0}
-.portada-subtitle{margin:14px auto 0;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);padding:10px 18px;border-radius:30px;font-size:12px;letter-spacing:1px;max-width:320px}
-.portada-body{flex:1;background:#f1f5f9;padding:18px;overflow-y:auto}
-.portada-card{background:#fff;border-radius:18px;padding:18px;border:2px solid #cbd5e1;box-shadow:0 8px 20px rgba(0,0,0,0.1)}
-.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
-.badge{border:2px solid #c9a86a;background:#fffbeb;padding:6px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#1e3a2e}
-.portada-text{font-size:13px;color:#334155;line-height:1.6;text-align:left}
-.portada-text b{color:#1e3a2e}
-.portada-ejemplo{background:#f8fafc;border-left:5px solid #c9a86a;padding:12px;border-radius:10px;margin-top:12px;font-size:12px}
-.portada-footer{background:#fff;padding:16px 18px;border-top:2px solid #e2e8f0;flex-shrink:0;text-align:center}
-.btn-portada{background:#1e3a2e;color:#fff;border:3px solid #c9a86a;box-shadow:0 6px 0 #0f231c;font-size:16px;padding:18px}
-.btn-portada:active{box-shadow:0 2px 0 #0f231c;transform:translateY(4px)}
+.portada-top{background:linear-gradient(180deg,#1e3a2e 0%,#2d5a45 100%);padding:24px 20px 16px;text-align:center;color:#fff}
+.portada-title{font-size:40px;font-weight:900;line-height:1.1;margin:0}
+.portada-subtitle{margin:12px auto 0;background:rgba(255,255,255,0.15);padding:10px 16px;border-radius:30px;font-size:12px;max-width:320px;border:1px solid rgba(255,255,255,0.2)}
+.portada-body{flex:1;background:#f1f5f9;padding:16px;overflow-y:auto}
+.portada-card{background:#fff;border-radius:18px;padding:16px;border:2px solid #cbd5e1}
+.portada-footer{background:#fff;padding:14px 16px;border-top:2px solid #e2e8f0;text-align:center;flex-shrink:0}
+.btn-portada{background:#1e3a2e;color:#fff;border:3px solid #c9a86a;box-shadow:0 6px 0 #0f231c}
+.badge{border:2px solid #c9a86a;background:#fffbeb;padding:5px 10px;border-radius:20px;font-size:10px;font-weight:800;color:#1e3a2e;display:inline-block;margin:3px}
 </style>
 </head>
 <body>
@@ -44,43 +40,18 @@ select,input,textarea{width:100%;padding:14px;border-radius:10px;border:2px soli
 
 <div id="portada">
 <div class="portada-top">
-<div style="background:#fff;width:90px;height:90px;border-radius:20px;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-size:50px;border:3px solid #c9a86a">🌿</div>
+<div style="background:#fff;width:80px;height:80px;border-radius:18px;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:45px;border:3px solid #c9a86a">🌿</div>
 <h1 class="portada-title">EcoCiclo<br>Digital</h1>
 <div class="portada-subtitle">♻️ Dale una segunda vida a lo que ya no usas</div>
 </div>
-
 <div class="portada-body">
 <div class="portada-card">
-<div class="badges">
-<span class="badge">♻️ REUTILIZAR</span>
-<span class="badge">💰 VENDER</span>
-<span class="badge">❤️ DONAR</span>
-</div>
-
-<div class="portada-text">
-<b style="font-size:15px">¿De qué trata?</b><br><br>
-Muchas veces tiramos cosas que todavía sirven. Esta app te ayuda a no contaminar y a darle otra oportunidad a tus objetos.<br><br>
-<b>¿Qué hace?</b><br>
-<b>1. 📸 Foto:</b> Tomas foto a lo que ya no quieres (ropa, mueble, botella, etc.)<br>
-<b>2. ❓ 5 preguntas:</b> Por qué lo desechas, qué harías, cómo lo reutilizarías, cuánto lo venderías y dónde.<br>
-<b>3. 📊 Análisis:</b> La app ve material, forma y nivel de uso.<br>
-<b>4. 🛠️ Te recomienda:</b> Cómo repararlo, transformarlo, precio real y dónde donarlo en NL.<br>
-<b>5. 🌎 Evitas basura</b> y puedes ganar dinero.<br>
-
-<div class="portada-ejemplo">
-<b>Ejemplo real:</b> Subes foto de un objeto usado. Si es de plástico duro y forma hueca, te dice "haz maceta". Si es de tela, "haz bolsa". Te da precio sugerido y tutorial.
-</div>
-
-<div style="text-align:center;margin-top:12px;background:#dcfce7;padding:8px;border-radius:10px;font-weight:800;font-size:11px;color:#1e3a2e">
-Proyecto Escolar • Nuevo León 2026 • Cuidado del Ambiente
+<div style="text-align:center"><span class="badge">♻️ REUTILIZAR</span><span class="badge">💰 VENDER</span><span class="badge">❤️ DONAR</span></div>
+<p style="font-size:13px;line-height:1.6;color:#334155"><b>¿De qué trata?</b> Muchas veces tiramos cosas que aún sirven. Esta app te ayuda a analizar tu objeto con foto y te dice cómo reutilizarlo, venderlo o donarlo para no contaminar.</p>
 </div>
 </div>
-</div>
-</div>
-
 <div class="portada-footer">
 <button class="btn btn-portada" onclick="document.getElementById('portada').classList.add('oculta')">📸 ENTRAR AL ESCANER →</button>
-<div style="font-size:10px;color:#64748b;margin-top:8px">Versión corregida • Ya no se corta</div>
 </div>
 </div>
 
@@ -94,7 +65,7 @@ Proyecto Escolar • Nuevo León 2026 • Cuidado del Ambiente
 
 <div id="c0" class="content active">
 <h3 style="color:#1e3a2e;margin-top:0">📸 Analizar objeto</h3>
-<select id="tipo"><option>Ropa</option><option selected>Otros</option><option>Mueble</option><option>Electrónico</option><option>Recipiente plástico</option><option>Libro</option><option>Útil escolar</option></select>
+<select id="tipo" onchange="cambiarOpciones()"><option>Ropa</option><option selected>Otros</option><option>Mueble</option><option>Electrónico</option><option>Recipiente plástico</option><option>Libro</option><option>Útil escolar</option><option>Balón</option></select>
 <div style="display:flex;gap:8px;margin-top:10px">
 <button class="btn" style="flex:1;background:#f1f5f9;color:#1e3a2e;border:2px solid #1e3a2e" onclick="gal.click()">📁 GALERÍA</button>
 <button class="btn" style="flex:1;background:#fffbeb;color:#1e3a2e;border:2px solid #c9a86a" onclick="cam.click()">📷 FOTO</button>
@@ -106,16 +77,26 @@ Proyecto Escolar • Nuevo León 2026 • Cuidado del Ambiente
 <div id="p12" style="display:none">
 <div class="pregunta"><label>1️⃣ ¿Por qué lo desechas?</label><select id="porque"><option value="">Selecciona...</option><option>Ya no me sirve</option><option>Está roto</option><option>Pasó de moda</option><option>Tengo duplicado</option><option>Ocupa espacio</option></select></div>
 <div class="pregunta"><label>2️⃣ ¿Qué te gustaría hacer?</label><select id="quegustaria"><option value="">Selecciona...</option><option>Repararlo</option><option>Transformarlo</option><option>Donarlo</option><option>Venderlo</option><option>Reciclarlo</option></select></div>
-<button class="btn" style="background:#c9a86a;color:#1e3a2e" onclick="ir3()">SIGUIENTE →</button>
+<button class="btn btn2" onclick="ir3()">SIGUIENTE →</button>
 </div>
+
 <div id="p3" style="display:none">
-<div class="pregunta"><label>3️⃣ ¿Cómo lo reutilizarías?</label><textarea id="reutilizar" rows="3" placeholder="Ej: maceta, bolsa..."></textarea></div>
-<button class="btn" style="background:#c9a86a;color:#1e3a2e" onclick="ir45()">SIGUIENTE →</button>
+<div class="pregunta" style="background:#fffbeb;border-color:#c9a86a">
+<label>3️⃣ ¿Cómo lo reutilizarías? <span style="font-weight:400;font-size:11px">(opcional)</span></label>
+<p style="font-size:11px;color:#64748b;margin:4px 0">Toca una opción o escribe la tuya. Puedes saltar esta.</p>
+<div id="opcionesReuso"></div>
+<textarea id="reutilizar" rows="2" placeholder="O escribe tu idea aquí... ej: maceta, bolsa..." style="margin-top:10px"></textarea>
+<div style="display:flex;gap:8px">
+<button class="btn" style="flex:1;background:#e2e8f0;color:#334155;border:2px solid #94a3b8" onclick="saltar3()">⏭️ SALTAR ESTA PREGUNTA</button>
+<button class="btn btn2" style="flex:1" onclick="ir45()">SIGUIENTE →</button>
 </div>
+</div>
+</div>
+
 <div id="p45" style="display:none">
-<div class="pregunta"><label>4️⃣ ¿Precio?</label><select id="precio"><option value="">Selecciona...</option><option>$20 - $50</option><option>$50 - $100</option><option>$100 - $300</option><option>$300+</option><option>No vender</option></select><input type="number" id="precioNum" placeholder="Exacto $"></div>
-<div class="pregunta"><label>5️⃣ ¿Cómo vender?</label><select id="comoVender"><option value="">Selecciona...</option><option>Marketplace</option><option>Mercado Libre</option><option>Bazar</option><option>WhatsApp</option></select><textarea id="dondeVender" rows="2" placeholder="Lugar..."></textarea></div>
-<select id="estado"><option value="3" selected>Estado 3 - Usado</option><option value="5">5 - Nuevo</option><option value="1">1 - Dañado</option></select>
+<div class="pregunta"><label>4️⃣ ¿Precio?</label><select id="precio"><option value="">Selecciona...</option><option>$20 - $50</option><option>$50 - $100</option><option>$100 - $300</option><option>$300+</option><option>No vender, donar</option></select><input type="number" id="precioNum" placeholder="Exacto $"></div>
+<div class="pregunta"><label>5️⃣ ¿Cómo vender?</label><select id="comoVender"><option value="">Selecciona...</option><option>Facebook Marketplace</option><option>Mercado Libre</option><option>Bazar</option><option>WhatsApp</option></select><textarea id="dondeVender" rows="2" placeholder="Lugar..."></textarea></div>
+<select id="estado"><option value="3" selected>Estado 3 - Usado</option><option value="5">5 - Como nuevo</option><option value="1">1 - Muy dañado</option></select>
 <button class="btn" onclick="calcular()">VER RESULTADO →</button>
 </div>
 </div>
@@ -127,11 +108,25 @@ Proyecto Escolar • Nuevo León 2026 • Cuidado del Ambiente
 </div>
 <script>
 function tab(n){for(let i=0;i<4;i++){document.getElementById('c'+i).classList.remove('active')}document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('c'+n).classList.add('active');document.querySelectorAll('.tab')[n].classList.add('active')}
-let est=3,fotoOk=false;
-function foto(e){let f=e.target.files[0];if(!f)return;preview.src=URL.createObjectURL(f);preview.style.display='block';fotoOk=true;msg.innerText='✅ Foto: '+f.name;document.getElementById('p12').style.display='block';document.getElementById('p3').style.display='none';document.getElementById('p45').style.display='none'}
-function ir3(){if(!porque.value||!quegustaria.value){alert('Responde 1 y 2');return}document.getElementById('p3').style.display='block'}
-function ir45(){if(!reutilizar.value){alert('Responde 3');return}document.getElementById('p45').style.display='block'}
-function calcular(){if(!fotoOk){alert('Foto primero');return}if(!precio.value||!comoVender.value){alert('Falta precio');return}indice.innerText=(est*20)+'%';recom.innerText='Listo para vender/donar';kg.innerText='Evitas 1kg basura';resumenResp.innerHTML='1️⃣ '+porque.value+'<br>2️⃣ '+quegustaria.value+'<br>3️⃣ '+reutilizar.value+'<br>4️⃣ '+precio.value+'<br>5️⃣ '+comoVender.value;infoMod.innerHTML='<div class=opcion><b>Idea:</b> '+reutilizar.value+'</div>';infoVenta.innerHTML='Vender en '+comoVender.value+' por '+precio.value;tab(1)}
+let est=3,fotoOk=false,reusoSel="";
+const ideasPorTipo={
+"Otros":["🗃️ Organizador de escritorio","🧹 Material para manualidad","📦 Caja de almacenamiento","♻️ Reciclar por partes"],
+"Ropa":["👜 Convertir en bolsa ecológica","🧵 Trapos de limpieza","🎨 Teñir y dar nuevo estilo","🧸 Relleno para cojín"],
+"Recipiente plástico":["🪴 Maceta para plantas","✏️ Lapicera / portalápices","💧 Sistema de riego","🧴 Organizador de tornillos"],
+"Mueble":["🎨 Repintar y restaurar","🛋️ Cambiar tapizado","📚 Convertir en repisa","🪑 Donar a alguien que lo necesite"],
+"Electrónico":["🔧 Limpiar y formatear","🔩 Vender por partes","📱 Donar si funciona","♻️ Llevar a centro de reciclaje"],
+"Libro":["📚 Donar a biblioteca","📓 Hacer libreta reciclada","📦 Forrar y regalar","💻 Digitalizar contenido"],
+"Útil escolar":["🎨 Forrar y reutilizar","✏️ Rellenar y seguir usando","📚 Armar kit escolar para donar","🖌️ Usar para manualidades"],
+"Balón":["🩹 Parchar con kit $35","🪴 Maceta colgante (cortar a la mitad)","🛋️ Puff relleno con ropa","💡 Lámpara decorativa"]
+};
+function cambiarOpciones(){let t=tipo.value;let lista=ideasPorTipo[t]||ideasPorTipo["Otros"];let html="";lista.forEach(op=>{html+=`<div class="opcion" onclick="selReuso(this)">${op}</div>`});document.getElementById('opcionesReuso').innerHTML=html}
+function selReuso(el){document.querySelectorAll('#opcionesReuso.opcion').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');reusoSel=el.innerText;reutilizar.value=reusoSel}
+function foto(e){let f=e.target.files[0];if(!f)return;preview.src=URL.createObjectURL(f);preview.style.display='block';fotoOk=true;msg.innerText='✅ Foto: '+f.name;document.getElementById('p12').style.display='block';document.getElementById('p3').style.display='none';document.getElementById('p45').style.display='none';cambiarOpciones()}
+function ir3(){if(!porque.value||!quegustaria.value){alert('Responde 1 y 2');return}document.getElementById('p3').style.display='block';window.scrollTo(0,document.body.scrollHeight)}
+function saltar3(){reusoSel="No especificado - ver recomendaciones automáticas";reutilizar.value="";document.getElementById('p45').style.display='block';window.scrollTo(0,document.body.scrollHeight)}
+function ir45(){let txt=reutilizar.value||reusoSel;if(!txt){txt="No especificado";}reusoSel=txt;document.getElementById('p45').style.display='block';window.scrollTo(0,document.body.scrollHeight)}
+function calcular(){if(!fotoOk){alert('Foto primero');return}if(!precio.value||!comoVender.value){alert('Falta precio y como vender');return}let txt=reutilizar.value||reusoSel||"Ver ideas automáticas";indice.innerText=(est*20)+'%';recom.innerText='Análisis completo';kg.innerText='Evitas 1kg basura | Precio: '+(precioNum.value? '$'+precioNum.value : precio.value);resumenResp.innerHTML='1️⃣ '+porque.value+'<br>2️⃣ '+quegustaria.value+'<br>3️⃣ '+txt+'<br>4️⃣ '+(precioNum.value||precio.value)+'<br>5️⃣ '+comoVender.value;infoMod.innerHTML='<div class=opcion><b>Tu idea / opción elegida:</b> '+txt+'</div><div class=opcion><b>Otras ideas para '+tipo.value+':</b> '+(ideasPorTipo[tipo.value]||ideasPorTipo["Otros"]).join(', ')+'</div>';infoVenta.innerHTML='Vender en '+comoVender.value+' por '+(precioNum.value||precio.value);tab(1)}
+cambiarOpciones();
 </script>
 </body>
 </html>
